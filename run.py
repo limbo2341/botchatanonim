@@ -1,40 +1,28 @@
 import asyncio
 import logging
-import os
 
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
-from aiogram.filters import CommandStart
-from aiogram.types import Message
+
+from config.settings import settings
+from bot.handlers import setup_routers
+
 
 logging.basicConfig(level=logging.INFO)
-
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-
-
-dp = Dispatcher()
-
-
-@dp.message(CommandStart())
-async def start_handler(message: Message):
-    await message.answer(
-        "🎮 Привет!\n\n"
-        "Я помогу найти игру по:\n"
-        "📷 скриншоту\n"
-        "📝 описанию\n"
-        "🎥 видео\n\n"
-        "Попробуй отправить скрин 👀"
-    )
 
 
 async def main():
     bot = Bot(
-        token=BOT_TOKEN,
+        token=settings.bot_token,
         default=DefaultBotProperties(
             parse_mode=ParseMode.HTML
         )
     )
+
+    dp = Dispatcher()
+
+    dp.include_router(setup_routers())
 
     await dp.start_polling(bot)
 
