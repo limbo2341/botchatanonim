@@ -18,12 +18,7 @@ pydantic-settings==2.9.1
 
 apscheduler==3.11.0
 
-rawgpy==1.0.0
-
 loguru==0.7.3
-
 orjson==3.10.18
-
-uvloop==0.21.0
 
 gunicorn==23.0.0
