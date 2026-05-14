@@ -19,7 +19,7 @@ async def search_game(message: Message):
 
         if not games:
             await message.answer(
-                "😔 Не смог найти игру.\n"
+                "😔 Игра не найдена.\n"
                 "Попробуй описать подробнее."
             )
             return
@@ -41,6 +41,5 @@ async def search_game(message: Message):
 
     except Exception as e:
         await message.answer(
-            "❌ Ошибка поиска игры"
+            f"❌ Ошибка:\n{str(e)}"
         )
-        print(e)
