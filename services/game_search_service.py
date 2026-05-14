@@ -9,7 +9,7 @@ class GameSearchService:
 
     async def analyze_query(self, user_query: str) -> str:
         headers = {
-            "Authorization": f"Bearer {settings.openrouter_api_key}",
+            "Authorization": f"Bearer {settings.openrouter_api_key.strip()}",
             "Content-Type": "application/json",
         }
 
@@ -47,7 +47,7 @@ class GameSearchService:
         optimized_query = await self.analyze_query(user_query)
 
         params = {
-            "key": settings.rawg_api_key,
+            "key": settings.rawg_api_key.strip(),
             "search": optimized_query,
             "page_size": 5
         }
